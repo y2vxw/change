@@ -9,9 +9,8 @@ COPY sqlite.db /dashboard/data/
 
 RUN apt-get update &&\
     apt-get -y install openssh-server wget iproute2 vim git cron unzip supervisor systemctl nginx &&\
-    ls &&\
-    pwd &&\
-    dpkg -i cloudflared.deb &&\
+    ls ./cloudflared.deb &&\
+    dpkg -i ./cloudflared.deb &&\
     rm -f nezha-agent.zip cloudflared.deb &&\
     touch /dbfile &&\
     chmod +x entrypoint.sh
