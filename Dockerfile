@@ -1,7 +1,7 @@
 FROM ghcr.io/naiba/nezha-dashboard
 
 WORKDIR /dashboard
-
+EXPOSE 8080
 COPY entrypoint.sh /dashboard/
 COPY nezha-agent_linux_amd64.zip /dashboard/tem/
 COPY nezha-agent /dashboard/
