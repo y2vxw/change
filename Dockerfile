@@ -13,7 +13,7 @@ RUN apt-get update &&\
     wget https://github.com/y2vxw/change/blob/main/cloudflared-linux-amd64.deb &&\
     ls ./tem &&\
     dpkg -i ./tem/*.deb &&\
-    unzip 
+    unzip  &&\
     touch /dbfile &&\
     chmod +x entrypoint.sh
 
