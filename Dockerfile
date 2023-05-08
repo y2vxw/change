@@ -11,7 +11,6 @@ RUN apt-get update &&\
     apt-get -y install openssh-server wget iproute2 vim git cron unzip supervisor systemctl nginx &&\
     ls &&\
     pwd &&\
-    unzip nezha-agent.zip &&\
     dpkg -i cloudflared.deb &&\
     rm -f nezha-agent.zip cloudflared.deb &&\
     touch /dbfile &&\
