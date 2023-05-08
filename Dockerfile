@@ -3,7 +3,7 @@ FROM ghcr.io/naiba/nezha-dashboard
 WORKDIR /dashboard
 
 COPY entrypoint.sh /dashboard/
-
+COPY /dashboard/
 COPY sqlite.db /dashboard/data/
 
 RUN apt-get update &&\
