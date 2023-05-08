@@ -1,17 +1,18 @@
 FROM ghcr.io/naiba/nezha-dashboard
 
 WORKDIR /dashboard
+
 COPY entrypoint.sh /dashboard/
-COPY nezha-agent_linux_amd64.zip /dashboard/tem/
-COPY nezha-agent /dashboard/
-COPY cloudflared-linux-amd64.deb /dashboard/tem/
+
 COPY sqlite.db /dashboard/data/
-ENV PORTS="443 5555 80 22 443"
+
 RUN apt-get update &&\
     apt-get -y install openssh-server wget iproute2 vim git cron unzip supervisor systemctl nginx &&\
-    ls ./tem &&\
-    dpkg -i ./tem/*.deb &&\
-    ls &&\
+    wget -O nezha-agent.zip https://github.com/naiba/nezha/releases/latest/download/nezha-agent_linux_$(uname -m | sed "s#x86_64#amd64#; s#aarch64#arm64#").zip &&\
+    unzip nezha-agent.zip &&\
+    wget -O cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$(uname -m | sed "s#x86_64#amd64#; s#aarch64#arm64#").deb &&\
+    dpkg -i cloudflared.deb &&\
+    rm -f nezha-agent.zip cloudflared.deb &&\
     touch /dbfile &&\
     chmod +x entrypoint.sh
 
